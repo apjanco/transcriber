@@ -1,0 +1,10 @@
+#jumpToInput {
+  margin-top: 3px;
+  margin-left: 10px;
+  padding: 2px;
+  max-width: 100px;
+}
+
+.faded-image {
+  opacity: 0.5;
+}

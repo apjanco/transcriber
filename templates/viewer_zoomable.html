@@ -1,0 +1,12 @@
+{% extends 'zapotexts/viewer_base.html' %}
+
+{% load staticfiles %}
+
+{% block viewer-script %}
+<script src="{% static 'js/openseadragon.min.js' %}"></script>
+<script src="{% static 'js/viewer_zoomable.js' %}"></script>
+{% endblock %}
+
+{% block image-html %}
+<div id="openseadragon1"></div>
+{% endblock %}

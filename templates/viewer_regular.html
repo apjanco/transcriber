@@ -1,0 +1,11 @@
+{% extends 'zapotexts/viewer_base.html' %}
+
+{% load staticfiles %}
+
+{% block viewer-script %}
+<script src="{% static 'js/viewer_regular.js' %}"></script>
+{% endblock %}
+
+{% block image-html %}
+<img id="pageImage" class="img-responsive">
+{% endblock %}

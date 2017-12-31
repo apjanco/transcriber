@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title %}{{ text_name|title|cut:"'"}}{% endblock %}
+
+{% block extra-css %}
+<link rel="stylesheet" href="{% static 'css/page_detail_style.css' %}">
+<link rel="stylesheet" href="{% static 'css/viewer.css' %}">
+{% endblock %}
+
+{% block extra-js %}
+<script src="{% static 'js/popovers.js' %}"></script>
+<script src="{% static 'js/viewer_base.js' %}"></script>
+{% block viewer-script %}{% endblock %}
+<script type="text/javascript">
+documentViewerInit({{ text_name|safe }}, {{ this_page|safe }}, {{ last_page|safe }}, {{ page_map|safe }});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row text-center">
+    <div class="btn-group" role="group" style="text-align: center;" aria-label="...">
+      <button class="btn btn-primary first-button" title="{% trans "First" %}"><span class="glyphicon glyphicon-step-backward"></span></button>
+      <button class="btn btn-primary disabled previous-button" title="{% trans "Previous" %}"><span class="glyphicon glyphicon-chevron-left"></span></button>
+      <a id="download-anchor" target="_blank" class="btn btn-primary" title="{% trans "Download" %}"><span class="glyphicon glyphicon-download-alt"></span></a>
+      <button class="btn btn-primary next-button" title="{% trans "Next" %}"><span class="glyphicon glyphicon-chevron-right"></span></button>
+      <button class="btn btn-primary last-button" title="{% trans "Last" %}"><span class="glyphicon glyphicon-step-forward"></span></button>
+      <input type="text" id="jumpToInput" placeholder="{% trans "Jump To..." %}">
+    </div>
+  </div>
+  <div class="row text-center">
+    <br>
+    <div id="pageImageDiv" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      {% block image-html %}{% endblock %}
+      <br>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 tabbable">
+      <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="tabs active">
+        <a href="#tab1-slug" data-toggle="tab">{% trans "Transcription" %}</a>
+        </li>
+        <li class="tabs">
+        <a href="#tab2-slug" data-toggle="tab">{% trans "Modern Spanish" %}</a>
+        </li>
+        <!--
+        <li class="tabs">
+        <a href="#tab3-slug" data-toggle="tab">{% trans "Workshop Notes" %}</a>
+        </li>
+        -->
+<!--  **ENGLISH TAB DISABLED UNTIL WE HAVE ENGLISH TRANSLATION FOR THE TEXTS
+        <li class="tabs">
+          <a href="#tab4-slug">{% trans "English" %}</a>
+        </li>
+-->
+      </ul>
+      <div class="tab-content text-left">
+        <div id="tab1-slug" class="tab-pane active">
+        </div>
+        <div id="tab2-slug" class="tab-pane">
+        </div>
+        <!--<div id="tab3-slug" class="tab-pane"></div>-->
+        <!--<div id="tab4-slug" class="tab-pane"></div>-->
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row text-center">
+    <div class="btn-group" role="group" style="text-align: center;" aria-label="...">
+      <button class="btn btn-primary first-button" title="{% trans "First" %}"><span class="glyphicon glyphicon-step-backward"></span></button>
+      <button class="btn btn-primary disabled previous-button" title="{% trans "Previous" %}"><span class="glyphicon glyphicon-chevron-left"></span></button>
+      <button class="btn btn-primary next-button" title="{% trans "Next" %}"><span class="glyphicon glyphicon-chevron-right"></span></button>
+      <button class="btn btn-primary last-button" title="{% trans "Last" %}"><span class="glyphicon glyphicon-step-forward"></span></button>
+    </div>
+  </div>
+  <br>
+  <div class="row text-center" style="text-align: justify">
+    {% autoescape off %}
+    {{ citation }}
+    {% endautoescape %}
+  </div>
+</div>
+<br>
+{% endblock %}
